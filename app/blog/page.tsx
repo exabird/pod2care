@@ -1,11 +1,11 @@
 'use client'
 
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Search, Calendar, Clock, Tag } from 'lucide-react'
 import { getAllArticles } from '@/lib/blog-data'
 import BlogIllustration from '@/components/illustrations/BlogIllustration'
-import { useState } from 'react'
 
 const categories = ['Tous', 'Soins', 'Orthopédie', 'Prévention', 'Pathologies', 'Pédiatrie', 'Hygiène']
 
@@ -198,7 +198,7 @@ export default function BlogPage() {
 }
 
 function ArticleIcon({ type }: { type: string }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, React.ReactNode> = {
     ongle: (
       <svg className="w-20 h-20 text-sage-500/30" viewBox="0 0 100 100" fill="currentColor">
         <ellipse cx="50" cy="50" rx="30" ry="40" />
