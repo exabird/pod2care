@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { GraduationCap, Award, Users, Clock, Heart, Stethoscope } from 'lucide-react'
-import PodologistIllustration from '@/components/illustrations/PodologistIllustration'
+import AboutIllustration from '@/components/illustrations/AboutIllustration'
 
 const stats = [
   { icon: Clock, value: '10+', label: "Années d'expérience" },
@@ -15,17 +15,17 @@ const values = [
   {
     icon: Heart,
     title: 'Écoute & Bienveillance',
-    description: 'Chaque patient est unique. Je prends le temps de comprendre vos besoins et vos attentes.',
+    description: 'Chaque patient est unique. Je prends le temps de comprendre vos besoins.',
   },
   {
     icon: Stethoscope,
     title: 'Expertise médicale',
-    description: 'Formation continue et équipements de dernière génération pour des soins de qualité.',
+    description: 'Formation continue et équipements de dernière génération.',
   },
   {
     icon: Users,
     title: 'Suivi personnalisé',
-    description: "Un accompagnement sur le long terme pour garantir l'efficacité des traitements.",
+    description: "Un accompagnement sur le long terme pour garantir l'efficacité.",
   },
 ]
 
@@ -51,13 +51,8 @@ export default function AboutSection() {
             className="relative"
           >
             <div className="relative max-w-md mx-auto">
-              {/* Background shape */}
-              <div className="absolute inset-4 bg-sage-600/20 rounded-[3rem] -rotate-3" />
-              
               {/* Main illustration */}
-              <div className="relative bg-gradient-to-br from-sage-400/20 to-sage-600/20 rounded-[3rem] p-8">
-                <PodologistIllustration className="w-full h-auto" />
-              </div>
+              <AboutIllustration className="w-full h-auto" />
 
               {/* Floating badge */}
               <motion.div 
@@ -106,17 +101,10 @@ export default function AboutSection() {
               <p>
                 Mon cabinet est équipé des dernières technologies : plateforme de baropodométrie,
                 scanner 3D pour les empreintes, et logiciels de conception assistée par ordinateur.
-                Ces outils me permettent de vous offrir des soins de précision dans un environnement 
-                chaleureux et rassurant.
-              </p>
-              <p>
-                Je prends le temps d&apos;écouter, d&apos;expliquer et de vous accompagner 
-                vers une meilleure santé de vos pieds. Car des pieds en bonne santé, 
-                c&apos;est tout le corps qui en bénéficie.
               </p>
               <p className="font-medium text-white">
                 Conventionné secteur 1, je suis agréé par la Sécurité sociale et 
-                la plupart des mutuelles pour faciliter votre prise en charge.
+                la plupart des mutuelles.
               </p>
             </div>
 

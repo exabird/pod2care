@@ -3,7 +3,22 @@
 import { ArrowRight, Sparkles, Shield, Clock, Award } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import FootCareIllustration from '@/components/illustrations/FootCareIllustration'
+import dynamic from 'next/dynamic'
+
+// Dynamic import for the 3D model to avoid SSR issues
+const FootModel = dynamic(() => import('@/components/3d/FootModel'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[500px] flex items-center justify-center">
+      <div className="relative">
+        <div className="w-32 h-32 bg-sage-200/50 rounded-full animate-pulse" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-sage-400 border-t-transparent rounded-full animate-spin" />
+        </div>
+      </div>
+    </div>
+  )
+})
 
 export default function HeroSection() {
   return (
@@ -11,15 +26,16 @@ export default function HeroSection() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-sage-50 via-cream to-sand-50" />
       
-      {/* Organic shapes */}
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-sage-200/40 organic-blob blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sand-200/50 organic-blob blur-2xl" />
+      {/* Animated gradient orbs */}
+      <div className="absolute top-20 right-0 w-[700px] h-[700px] bg-gradient-to-br from-sage-300/40 to-sage-400/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-sand-200/50 to-sand-300/30 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-sage-200/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       {/* Subtle pattern */}
       <div className="absolute inset-0 grain" />
       
       <div className="container-main relative z-10 pt-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -54,13 +70,12 @@ export default function HeroSection() {
                 </svg>
               </span>
               ,{' '}
-              <span className="text-sage-600">ils vous portent chaque jour</span>
+              <span className="text-sage-600">ils vous portent</span>
             </h1>
 
             <p className="text-lg lg:text-xl text-forest/70 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Podologue diplômé d&apos;État avec plus de 10 ans d&apos;expérience, je vous accompagne 
-              avec des soins personnalisés pour votre confort, votre mobilité et votre bien-être au quotidien.
-              Spécialisé dans les semelles orthopédiques sur mesure et le suivi des patients diabétiques.
+              Podologue diplômé d&apos;État avec plus de 10 ans d&apos;expérience, 
+              je vous accompagne avec des soins personnalisés pour votre confort et votre bien-être.
             </p>
 
             {/* CTAs */}
@@ -84,7 +99,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-6 mt-12 justify-center lg:justify-start"
+              className="flex flex-wrap items-center gap-6 mt-10 justify-center lg:justify-start"
             >
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
@@ -97,7 +112,7 @@ export default function HeroSection() {
                     </div>
                   ))}
                 </div>
-                <span className="text-sm text-forest/60">+500 patients satisfaits</span>
+                <span className="text-sm text-forest/60">+500 patients</span>
               </div>
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -105,7 +120,7 @@ export default function HeroSection() {
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
                 ))}
-                <span className="text-sm text-forest/60 ml-1">4.9/5 sur Google</span>
+                <span className="text-sm text-forest/60 ml-1">4.9/5</span>
               </div>
             </motion.div>
 
@@ -114,7 +129,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="grid grid-cols-3 gap-4 mt-10 pt-10 border-t border-sage-200"
+              className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-sage-200"
             >
               <div className="text-center lg:text-left">
                 <div className="w-10 h-10 mx-auto lg:mx-0 bg-sage-100 rounded-xl flex items-center justify-center mb-2">
@@ -134,65 +149,59 @@ export default function HeroSection() {
                 <div className="w-10 h-10 mx-auto lg:mx-0 bg-sage-100 rounded-xl flex items-center justify-center mb-2">
                   <Award className="w-5 h-5 text-sage-600" />
                 </div>
-                <p className="text-sm font-medium text-forest">Diplômé d&apos;État</p>
-                <p className="text-xs text-forest/50">Depuis 2014</p>
+                <p className="text-sm font-medium text-forest">Diplômé</p>
+                <p className="text-xs text-forest/50">D&apos;État</p>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Visual */}
+          {/* 3D Model */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 1 }}
             className="relative hidden lg:block"
           >
-            <div className="relative max-w-lg mx-auto">
-              {/* Background circle */}
-              <div className="absolute inset-8 bg-gradient-to-br from-sage-300 to-sage-400 rounded-full opacity-20 blur-2xl" />
-              
-              {/* Main illustration */}
-              <FootCareIllustration className="w-full h-auto relative z-10" />
-
-              {/* Floating cards */}
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="absolute top-8 right-0 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-sage-100"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-forest">Disponible</p>
-                    <p className="text-xs text-sage-600">Lun-Sam</p>
-                  </div>
+            <FootModel />
+            
+            {/* Floating info cards */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="absolute top-12 right-0 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-sage-100 z-10"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="absolute bottom-20 -left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-sage-100"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-forest">Carte Vitale</p>
-                    <p className="text-xs text-sage-600">Acceptée</p>
-                  </div>
+                <div>
+                  <p className="text-sm font-medium text-forest">Scanner 3D</p>
+                  <p className="text-xs text-sage-600">Haute précision</p>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+              className="absolute bottom-32 left-0 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-sage-100 z-10"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-forest">Soins personnalisés</p>
+                  <p className="text-xs text-sage-600">Sur mesure</p>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -201,7 +210,7 @@ export default function HeroSection() {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2 text-sage-500">

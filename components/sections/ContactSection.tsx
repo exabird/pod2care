@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react'
+import ContactIllustration from '@/components/illustrations/ContactIllustration'
 
 export default function ContactSection() {
   return (
@@ -32,23 +33,29 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Info */}
+          {/* Map Illustration + Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
           >
-            <div className="space-y-6">
+            {/* Map */}
+            <div className="mb-8 rounded-3xl overflow-hidden shadow-lg">
+              <ContactIllustration className="w-full h-auto" />
+            </div>
+
+            {/* Contact cards */}
+            <div className="grid sm:grid-cols-2 gap-4">
               {/* Address Card */}
-              <div className="bg-white rounded-3xl p-6 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-sage-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-sage-600" />
+              <div className="bg-white rounded-2xl p-5 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
+                <div className="flex gap-3">
+                  <div className="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-sage-600" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-forest mb-1">Adresse</h3>
-                    <p className="text-forest/60">
+                    <h3 className="font-display font-semibold text-forest text-sm mb-1">Adresse</h3>
+                    <p className="text-forest/60 text-sm">
                       123 Rue de la Santé<br />
                       75014 Paris
                     </p>
@@ -56,7 +63,7 @@ export default function ContactSection() {
                       href="https://maps.google.com" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 mt-2 text-sm text-sage-600 hover:text-sage-700 transition-colors"
+                      className="inline-flex items-center gap-1 mt-2 text-xs text-sage-600 hover:text-sage-700 transition-colors"
                     >
                       Voir sur Google Maps
                       <ExternalLink className="w-3 h-3" />
@@ -66,69 +73,51 @@ export default function ContactSection() {
               </div>
 
               {/* Phone Card */}
-              <div className="bg-white rounded-3xl p-6 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-sage-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-sage-600" />
+              <div className="bg-white rounded-2xl p-5 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
+                <div className="flex gap-3">
+                  <div className="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-sage-600" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-forest mb-1">Téléphone</h3>
+                    <h3 className="font-display font-semibold text-forest text-sm mb-1">Téléphone</h3>
                     <a 
                       href="tel:+33123456789" 
-                      className="text-xl font-medium text-sage-600 hover:text-sage-700 transition-colors"
+                      className="text-lg font-medium text-sage-600 hover:text-sage-700 transition-colors"
                     >
                       01 23 45 67 89
                     </a>
-                    <p className="text-sm text-forest/50 mt-1">
-                      Réponse rapide du lundi au vendredi
-                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Email Card */}
-              <div className="bg-white rounded-3xl p-6 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-sage-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-sage-600" />
+              <div className="bg-white rounded-2xl p-5 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
+                <div className="flex gap-3">
+                  <div className="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-sage-600" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-forest mb-1">Email</h3>
+                    <h3 className="font-display font-semibold text-forest text-sm mb-1">Email</h3>
                     <a 
                       href="mailto:contact@pod2care.fr" 
-                      className="text-sage-600 hover:text-sage-700 transition-colors"
+                      className="text-sage-600 hover:text-sage-700 transition-colors text-sm"
                     >
                       contact@pod2care.fr
                     </a>
-                    <p className="text-sm text-forest/50 mt-1">
-                      Nous répondons sous 24h
-                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Hours Card */}
-              <div className="bg-white rounded-3xl p-6 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-sage-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-sage-600" />
+              <div className="bg-white rounded-2xl p-5 border border-sage-100 hover:shadow-lg hover:shadow-sage-100/50 transition-shadow">
+                <div className="flex gap-3">
+                  <div className="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-sage-600" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-display font-semibold text-forest mb-3">Horaires</h3>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-forest/60">Lundi - Vendredi</span>
-                        <span className="font-medium text-forest">9h00 - 19h00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-forest/60">Samedi</span>
-                        <span className="font-medium text-forest">9h00 - 13h00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-forest/60">Dimanche</span>
-                        <span className="text-forest/40">Fermé</span>
-                      </div>
-                    </div>
+                  <div className="text-sm">
+                    <h3 className="font-display font-semibold text-forest mb-1">Horaires</h3>
+                    <p className="text-forest/60">Lun-Ven : <span className="text-forest">9h-19h</span></p>
+                    <p className="text-forest/60">Sam : <span className="text-forest">9h-13h</span></p>
                   </div>
                 </div>
               </div>
@@ -206,4 +195,3 @@ export default function ContactSection() {
     </section>
   )
 }
-
