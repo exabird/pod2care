@@ -2,7 +2,7 @@
 
 import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, Environment, ContactShadows, Float, PresentationControls } from '@react-three/drei'
+import { useGLTF, Environment, ContactShadows, Float, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
 function Model() {
@@ -67,18 +67,16 @@ export default function FootModel() {
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#a5b396" />
         <pointLight position={[10, 5, 5]} intensity={0.3} color="#d3c7b3" />
         
-        <PresentationControls
-          global
-          config={{ mass: 2, tension: 500 }}
-          snap={true}
-          rotation={[0, 0.3, 0]}
-          polar={[-Math.PI / 4, Math.PI / 4]}
-          azimuth={[-Math.PI / 4, Math.PI / 4]}
-        >
-          <Suspense fallback={<LoadingFallback />}>
-            <Model />
-          </Suspense>
-        </PresentationControls>
+        <Suspense fallback={<LoadingFallback />}>
+          <Model />
+        </Suspense>
+
+        <OrbitControls 
+          enableZoom={false}
+          enablePan={false}
+          minPolarAngle={Math.PI / 4}
+          maxPolarAngle={Math.PI / 1.5}
+        />
 
         <ContactShadows
           position={[0, -2.5, 0]}
@@ -104,4 +102,3 @@ export default function FootModel() {
 
 // Preload the model
 useGLTF.preload('/models/mens_foot_3d_scan.glb')
-
